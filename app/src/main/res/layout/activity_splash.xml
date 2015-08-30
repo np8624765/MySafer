@@ -11,8 +11,18 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         style="@android:style/Widget.ProgressBar.Small"
-        android:layout_centerInParent="true"
+        android:layout_centerInParent="true" />
 
+    <TextView
+        android:id="@+id/tv_progress"
+        android:text="下载进度：0%"
+        android:textColor="#FF0000"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:paddingBottom="100dp"
+        android:visibility="gone"
         />
 
 </RelativeLayout>
