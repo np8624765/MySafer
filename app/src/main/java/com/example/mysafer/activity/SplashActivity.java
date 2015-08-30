@@ -161,9 +161,10 @@ public class SplashActivity extends Activity {
 
     //弹出对话框
     private void showUpdateDialog() {
+
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         //提示框标题
-        builder.setTitle("版本" + versionName +"升级");
+        builder.setTitle("版本" + versionName + "升级");
         //提示框内容
         builder.setMessage(description);
         //提示框按钮
@@ -177,6 +178,13 @@ public class SplashActivity extends Activity {
         builder.setNegativeButton("以后再说", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
+                enterHome();
+            }
+        });
+        //返回键监听
+        builder.setOnCancelListener(new DialogInterface.OnCancelListener() {
+            @Override
+            public void onCancel(DialogInterface dialog) {
                 enterHome();
             }
         });
@@ -217,7 +225,8 @@ public class SplashActivity extends Activity {
                     intent.addCategory(Intent.CATEGORY_DEFAULT);
                     intent.setDataAndType(Uri.fromFile(responseInfo.result),
                             "application/vnd.android.package-archive");
-                    startActivity(intent);
+                    //startActivity(intent);
+                    startActivityForResult(intent, 0);
                 }
                 //下载失败
                 @Override
@@ -230,5 +239,10 @@ public class SplashActivity extends Activity {
         }
     }
 
-
+    //接收调用的Intent所返回的信息
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        enterHome();
+    }
 }
