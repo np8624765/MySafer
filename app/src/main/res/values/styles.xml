@@ -5,4 +5,15 @@
         <!-- Customize your theme here. -->
     </style>
 
+
+    <!-- 功能标题样式. -->
+    <style name="TitleStyle">
+        <item name="android:textSize">22sp</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">50dp</item>
+        <item name="android:textColor">@color/blanck</item>
+        <item name="android:background">#0072ff</item>
+        <item name="android:gravity">center</item>
+    </style>
+
 </resources>

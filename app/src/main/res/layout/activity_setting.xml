@@ -1,0 +1,23 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.mysafer.activity.SettingActivity"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tv_setting_title"
+        android:text="设置中心"
+        style="@style/TitleStyle"
+        />
+
+    <com.example.mysafer.views.SettingItemView
+        android:id="@+id/siv_update"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+
+    </com.example.mysafer.views.SettingItemView>
+
+</LinearLayout>

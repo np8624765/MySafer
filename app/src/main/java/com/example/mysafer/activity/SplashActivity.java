@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.net.Uri;
@@ -47,6 +48,8 @@ public class SplashActivity extends Activity {
 
     private TextView tvProgress;
 
+    private SharedPreferences sp;
+
     //使用handler，可以让子线程中刷新UI
     private Handler handler = new Handler() {
         @Override
@@ -60,7 +63,7 @@ public class SplashActivity extends Activity {
                     enterHome();
                     break;
                 case CODE_IO_ERR:
-                    Toast.makeText(SplashActivity.this, "服务器连接失败", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(SplashActivity.this, "无法检查更新", Toast.LENGTH_SHORT).show();
                     enterHome();
                     break;
                 case CODE_JSON_ERR:
@@ -78,8 +81,16 @@ public class SplashActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
-        //检查升级
-        CheckVersion();
+
+        sp = getSharedPreferences("config", MODE_PRIVATE);
+
+        if(sp.getBoolean("auto_update", true)) {
+            //检查升级
+            CheckVersion();
+        }else {
+            handler.sendEmptyMessageDelayed(CODE_UPDATE_NOT, 2000);
+        }
+
     }
 
     //获取当前版本信息
@@ -106,13 +117,13 @@ public class SplashActivity extends Activity {
                 HttpURLConnection conn = null;
                 try {
                     URL url = new URL("http://10.1.15.143/mysafer/update.json");
-                    conn = (HttpURLConnection)url.openConnection();
+                    conn = (HttpURLConnection) url.openConnection();
                     conn.setRequestMethod("GET");
                     conn.setConnectTimeout(3000);   //设置连接超时
                     conn.setReadTimeout(3000);      //设置读超时
                     conn.connect();
                     //返回值正常
-                    if(conn.getResponseCode()==200) {
+                    if (conn.getResponseCode() == 200) {
                         InputStream in = conn.getInputStream();
                         String result = SteamUtils.readFromStream(in);
                         //System.out.println("网络返回的结果：" + result);
@@ -123,27 +134,27 @@ public class SplashActivity extends Activity {
                         description = jsonObject.getString("description");
                         downloadUrl = jsonObject.getString("downloadUrl");
                         //System.out.println(getCurrentVersion()+"：" + versionCode);
-                        if(getCurrentVersion()<versionCode) {
+                        if (getCurrentVersion() < versionCode) {
                             msg.what = CODE_UPDATE_DIALOG;
-                        }else{
+                        } else {
                             msg.what = CODE_UPDATE_NOT;
                         }
                     }
-                }catch (MalformedInputException e) {
+                } catch (MalformedInputException e) {
                     e.printStackTrace();
                     msg.what = CODE_URL_ERR;
-                }catch (IOException e) {
+                } catch (IOException e) {
                     e.printStackTrace();
                     msg.what = CODE_IO_ERR;
-                }catch (JSONException e) {
+                } catch (JSONException e) {
                     e.printStackTrace();
                     msg.what = CODE_JSON_ERR;
-                }finally {
+                } finally {
                     //强制让闪屏界面显示2秒
                     long endTime = System.currentTimeMillis();
-                    if((endTime-startTime)<2000) {
+                    if ((endTime - startTime) < 2000) {
                         try {
-                            sleep(2000-(endTime-startTime));
+                            sleep(2000 - (endTime - startTime));
                         } catch (InterruptedException e) {
                             e.printStackTrace();
                         }
@@ -151,7 +162,7 @@ public class SplashActivity extends Activity {
                     //发生消息给Handler
                     handler.sendMessage(msg);
                     //关闭网络连接
-                    if(conn!=null) {
+                    if (conn != null) {
                         conn.disconnect();
                     }
                 }
@@ -201,20 +212,21 @@ public class SplashActivity extends Activity {
 
     //使用xUtils工具包，下载新版本
     private void download() {
-        if(Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
+        if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
             //显示出下载进度
-            tvProgress = (TextView)findViewById(R.id.tv_progress);
+            tvProgress = (TextView) findViewById(R.id.tv_progress);
             tvProgress.setVisibility(View.VISIBLE);
-            String target = Environment.getExternalStorageDirectory()+"/mysafer.apk";
+            String target = Environment.getExternalStorageDirectory() + "/mysafer.apk";
             HttpUtils utils = new HttpUtils();
             utils.download(downloadUrl, target, new RequestCallBack<File>() {
                 //正在下载
                 @Override
                 public void onLoading(long total, long current, boolean isUploading) {
                     super.onLoading(total, current, isUploading);
-                    tvProgress.setText("下载进度："+(current*100/total)+"%");
+                    tvProgress.setText("下载进度：" + (current * 100 / total) + "%");
                     //System.out.println("下载进度："+ current + "/" +total);
                 }
+
                 //下载成功
                 @Override
                 public void onSuccess(ResponseInfo<File> responseInfo) {
@@ -228,14 +240,17 @@ public class SplashActivity extends Activity {
                     //startActivity(intent);
                     startActivityForResult(intent, 0);
                 }
+
                 //下载失败
                 @Override
                 public void onFailure(HttpException e, String s) {
                     Toast.makeText(SplashActivity.this, "下载失败", Toast.LENGTH_SHORT).show();
+                    enterHome();
                 }
             });
-        }else {
+        } else {
             Toast.makeText(SplashActivity.this, "未找到外部存储！", Toast.LENGTH_SHORT).show();
+            enterHome();
         }
     }
 
