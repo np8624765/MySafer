@@ -15,9 +15,15 @@ import com.example.mysafer.R;
  */
 public class SettingItemView extends RelativeLayout {
 
+    private static final String NAMESPACE = "http://schemas.android.com/apk/res/com.example.mysafer";
+
     private TextView tv_title;
     private TextView tv_desc;
     private CheckBox cb_status;
+
+    private String title;
+    private String desc_on;
+    private String desc_off;
 
 
     public SettingItemView(Context context, AttributeSet attrs, int defStyleAttr) {
@@ -27,6 +33,10 @@ public class SettingItemView extends RelativeLayout {
 
     public SettingItemView(Context context, AttributeSet attrs) {
         super(context, attrs);
+        //根据命名空间和属性名称获取属性值
+        title = attrs.getAttributeValue(NAMESPACE, "setting_title");
+        desc_on = attrs.getAttributeValue(NAMESPACE, "desc_on");
+        desc_off = attrs.getAttributeValue(NAMESPACE, "desc_off");
         initView();
     }
 
@@ -41,6 +51,8 @@ public class SettingItemView extends RelativeLayout {
         tv_title = (TextView)findViewById(R.id.tv_auto_update_title);
         tv_desc = (TextView)findViewById(R.id.tv_auto_update_desc);
         cb_status = (CheckBox)findViewById(R.id.tv_auto_update_status);
+
+        setTitle(title);
     }
 
     public void setTitle(String title) {
@@ -57,5 +69,10 @@ public class SettingItemView extends RelativeLayout {
 
     public void setChecked(boolean checked) {
         cb_status.setChecked(checked);
+        if(checked) {
+            setDesc(desc_on);
+        }else {
+            setDesc(desc_off);
+        }
     }
 }

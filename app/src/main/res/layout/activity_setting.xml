@@ -1,5 +1,6 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:mysafer="http://schemas.android.com/apk/res/com.example.mysafer"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -16,6 +17,9 @@
         android:id="@+id/siv_update"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        mysafer:setting_title = "自动检查更新设置"
+        mysafer:desc_on = "已开启"
+        mysafer:desc_off = "已关闭"
         >
 
     </com.example.mysafer.views.SettingItemView>
