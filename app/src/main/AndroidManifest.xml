@@ -27,6 +27,14 @@
             android:name=".activity.SettingActivity"
             android:label="@string/title_activity_setting" >
         </activity>
+        <activity
+            android:name=".activity.LostFindActivity"
+            android:label="@string/title_activity_lost_find" >
+        </activity>
+        <activity
+            android:name=".activity.Setup1Activity"
+            android:label="@string/title_activity_setup1" >
+        </activity>
     </application>
 
 </manifest>

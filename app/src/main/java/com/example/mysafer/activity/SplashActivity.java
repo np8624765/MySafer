@@ -13,6 +13,8 @@ import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
 import android.view.View;
+import android.view.animation.AlphaAnimation;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -82,6 +84,8 @@ public class SplashActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
+        RelativeLayout rl = (RelativeLayout)findViewById(R.id.rl_root);
+
         sp = getSharedPreferences("config", MODE_PRIVATE);
 
         if(sp.getBoolean("auto_update", true)) {
@@ -91,6 +95,10 @@ public class SplashActivity extends Activity {
             handler.sendEmptyMessageDelayed(CODE_UPDATE_NOT, 2000);
         }
 
+        //渐变的动画
+        AlphaAnimation anim = new AlphaAnimation(0.3f, 1f);
+        anim.setDuration(2000);
+        rl.startAnimation(anim);
     }
 
     //获取当前版本信息

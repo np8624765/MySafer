@@ -1,0 +1,15 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.mysafer.activity.LostFindActivity">
+
+    <TextView
+        android:id="@+id/tv_setting_title"
+        android:text="手机防盗"
+        style="@style/TitleStyle"
+        />
+
+</LinearLayout>

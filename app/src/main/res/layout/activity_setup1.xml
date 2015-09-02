@@ -1,0 +1,113 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.mysafer.activity.Setup1Activity">
+
+    <TextView
+        android:id="@+id/tv_setting_title"
+        android:text="1 欢迎进入设置向导"
+        style="@style/TitleStyle"
+        />
+
+    <TextView
+        android:text="手机防盗功能如下："
+        style="@style/ContentStyle"
+        />
+
+    <LinearLayout
+        android:gravity="center"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:text="  手机卡变更报警功能"
+                style="@style/ContentStyle"
+                android:drawableLeft="@android:drawable/star_big_on"
+                android:gravity="center"
+                />
+
+            <TextView
+                android:text="  GPS卫星定位追踪"
+                style="@style/ContentStyle"
+                android:drawableLeft="@android:drawable/star_big_on"
+                android:gravity="center"
+                />
+
+            <TextView
+                android:text="  远程控制销毁数据"
+                style="@style/ContentStyle"
+                android:drawableLeft="@android:drawable/star_big_on"
+                android:gravity="center"
+                />
+
+            <TextView
+                android:text="  远程控制锁定手机屏幕"
+                style="@style/ContentStyle"
+                android:drawableLeft="@android:drawable/star_big_on"
+                android:gravity="center"
+                />
+
+        </LinearLayout>
+    </LinearLayout>
+    
+    <LinearLayout
+        android:layout_marginTop="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@android:drawable/presence_invisible"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@android:drawable/presence_online"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@android:drawable/presence_online"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@android:drawable/presence_online"/>
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:src="@drawable/setup1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"/>
+
+        <Button
+            android:id="@+id/bt_next"
+            android:text="下一步"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_margin="3dp"
+            android:background="@drawable/btn_blue"/>
+
+    </RelativeLayout>
+    
+
+</LinearLayout>

@@ -7,4 +7,6 @@
 
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_setting">SettingActivity</string>
+    <string name="title_activity_lost_find">LostFindActivity</string>
+    <string name="title_activity_setup1">Setup1Activity</string>
 </resources>
