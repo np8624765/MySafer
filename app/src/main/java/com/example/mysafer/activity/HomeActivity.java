@@ -160,16 +160,17 @@ public class HomeActivity extends Activity {
             public void onClick(View v) {
                 String pwd = Md5Utils.encode
                         (((EditText) view.findViewById(R.id.et_pwd)).getText().toString());
-                if(!TextUtils.isEmpty(pwd)) {
-                    if (pwd.equals(sp.getString("password", null))){
+                if (!TextUtils.isEmpty(pwd)) {
+                    if (pwd.equals(sp.getString("password", null))) {
                         //Toast.makeText(HomeActivity.this, "登录成功", Toast.LENGTH_SHORT).show();
                         dialog.dismiss();
                         //跳转进入手机防盗
                         startActivity(new Intent(HomeActivity.this, LostFindActivity.class));
-                    }else {
+
+                    } else {
                         Toast.makeText(HomeActivity.this, "密码错误", Toast.LENGTH_SHORT).show();
                     }
-                }else {
+                } else {
                     Toast.makeText(HomeActivity.this, "密码不能为空", Toast.LENGTH_SHORT).show();
                 }
             }
@@ -182,4 +183,5 @@ public class HomeActivity extends Activity {
             }
         });
     }
+
 }

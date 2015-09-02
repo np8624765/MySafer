@@ -1,5 +1,6 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:mysafer="http://schemas.android.com/apk/res/com.example.mysafer"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -8,56 +9,34 @@
 
     <TextView
         android:id="@+id/tv_setting_title"
-        android:text="1 欢迎进入设置向导"
+        android:text="3 设置安全号码"
         style="@style/TitleStyle"
         />
 
     <TextView
-        android:text="手机防盗功能如下："
+        android:text="安全号码功能如下："
         style="@style/ContentStyle"
         />
 
-    <LinearLayout
-        android:gravity="center"
-        android:orientation="vertical"
+    <TextView
+        android:text="      当我的卫士发现您的SIM卡发生变化时，会将报警短信发送至安全号码"
+        style="@style/ContentStyle"
+         />
+
+    <EditText
+        android:id="@+id/ed_safe_phone"
+        android:hint="请输入或选择安全号码"
+        android:layout_margin="5dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content" />
 
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+    <Button
+        android:text="选择联系人"
+        android:layout_margin="5dp"
+        android:background="@drawable/btn_blue"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
-            <TextView
-                android:text="  手机卡变更报警功能"
-                style="@style/ContentStyle"
-                android:drawableLeft="@android:drawable/star_big_on"
-                android:gravity="center"
-                />
-
-            <TextView
-                android:text="  GPS卫星定位追踪"
-                style="@style/ContentStyle"
-                android:drawableLeft="@android:drawable/star_big_on"
-                android:gravity="center"
-                />
-
-            <TextView
-                android:text="  远程控制销毁数据"
-                style="@style/ContentStyle"
-                android:drawableLeft="@android:drawable/star_big_on"
-                android:gravity="center"
-                />
-
-            <TextView
-                android:text="  远程控制锁定手机屏幕"
-                style="@style/ContentStyle"
-                android:drawableLeft="@android:drawable/star_big_on"
-                android:gravity="center"
-                />
-
-        </LinearLayout>
-    </LinearLayout>
     
     <LinearLayout
         android:layout_marginTop="15dp"
@@ -68,17 +47,17 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:src="@android:drawable/presence_invisible"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@android:drawable/presence_invisible"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:src="@android:drawable/presence_online"/>
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@android:drawable/presence_invisible"/>
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@android:drawable/presence_invisible"/>
 
         <ImageView
             android:layout_width="wrap_content"
@@ -92,7 +71,7 @@
         android:layout_height="match_parent">
 
         <ImageView
-            android:src="@drawable/setup1"
+            android:src="@drawable/setup3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"/>
@@ -101,6 +80,11 @@
             android:id="@+id/btn_next"
             style="@style/NextStyle"
             android:onClick="next"/>
+
+        <Button
+            android:id="@+id/btn_prev"
+            style="@style/PrevStyle"
+            android:onClick="prev"/>
 
     </RelativeLayout>
     

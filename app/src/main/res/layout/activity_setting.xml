@@ -20,8 +20,7 @@
         mysafer:setting_title = "自动检查更新设置"
         mysafer:desc_on = "已开启"
         mysafer:desc_off = "已关闭"
-        >
+        />
 
-    </com.example.mysafer.views.SettingItemView>
 
 </LinearLayout>

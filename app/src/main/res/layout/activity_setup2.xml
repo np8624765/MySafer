@@ -1,5 +1,6 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:mysafer="http://schemas.android.com/apk/res/com.example.mysafer"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -8,56 +9,29 @@
 
     <TextView
         android:id="@+id/tv_setting_title"
-        android:text="1 欢迎进入设置向导"
+        android:text="2 SIM卡绑定"
         style="@style/TitleStyle"
         />
 
     <TextView
-        android:text="手机防盗功能如下："
+        android:text="绑定SIM卡功能如下："
         style="@style/ContentStyle"
         />
 
-    <LinearLayout
-        android:gravity="center"
-        android:orientation="vertical"
+    <TextView
+        android:text="      通过绑定SIM卡，下次手机重启后发现SIM卡发生变化，就会发送报警短信。"
+        style="@style/ContentStyle"
+         />
+
+    <com.example.mysafer.views.SettingItemView
+        android:id="@+id/siv_sim"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        mysafer:setting_title = "绑定SIM卡"
+        mysafer:desc_on = "已绑定"
+        mysafer:desc_off = "未绑定"
+        />
 
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-
-            <TextView
-                android:text="  手机卡变更报警功能"
-                style="@style/ContentStyle"
-                android:drawableLeft="@android:drawable/star_big_on"
-                android:gravity="center"
-                />
-
-            <TextView
-                android:text="  GPS卫星定位追踪"
-                style="@style/ContentStyle"
-                android:drawableLeft="@android:drawable/star_big_on"
-                android:gravity="center"
-                />
-
-            <TextView
-                android:text="  远程控制销毁数据"
-                style="@style/ContentStyle"
-                android:drawableLeft="@android:drawable/star_big_on"
-                android:gravity="center"
-                />
-
-            <TextView
-                android:text="  远程控制锁定手机屏幕"
-                style="@style/ContentStyle"
-                android:drawableLeft="@android:drawable/star_big_on"
-                android:gravity="center"
-                />
-
-        </LinearLayout>
-    </LinearLayout>
     
     <LinearLayout
         android:layout_marginTop="15dp"
@@ -68,12 +42,12 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@android:drawable/presence_online"/>
+            android:src="@android:drawable/presence_invisible"/>
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@android:drawable/presence_invisible"/>
+            android:src="@android:drawable/presence_online"/>
 
         <ImageView
             android:layout_width="wrap_content"
@@ -92,7 +66,7 @@
         android:layout_height="match_parent">
 
         <ImageView
-            android:src="@drawable/setup1"
+            android:src="@drawable/setup2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"/>
@@ -101,6 +75,11 @@
             android:id="@+id/btn_next"
             style="@style/NextStyle"
             android:onClick="next"/>
+
+        <Button
+            android:id="@+id/btn_prev"
+            style="@style/PrevStyle"
+            android:onClick="prev"/>
 
     </RelativeLayout>
     

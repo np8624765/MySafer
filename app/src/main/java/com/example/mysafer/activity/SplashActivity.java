@@ -214,7 +214,7 @@ public class SplashActivity extends Activity {
     private void enterHome() {
         Intent intent = new Intent(this, HomeActivity.class);
         startActivity(intent);
-        //结束掉当前界面
+        //结束掉当前界面，用户点击返回键时不会再回到这个Activity
         finish();
     }
 

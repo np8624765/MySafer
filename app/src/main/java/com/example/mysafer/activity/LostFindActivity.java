@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.View;
 
 import com.example.mysafer.R;
 
@@ -24,6 +25,12 @@ public class LostFindActivity extends Activity {
             startActivity(new Intent(LostFindActivity.this, Setup1Activity.class));
             finish();
         }
+    }
+
+    //重新进入设置向导
+    public void reEnter(View v) {
+        startActivity(new Intent(this, Setup1Activity.class));
+        finish();
     }
 
 

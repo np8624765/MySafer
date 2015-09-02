@@ -21,7 +21,8 @@
         </activity>
         <activity
             android:name=".activity.HomeActivity"
-            android:label="@string/title_activity_home" >
+            android:label="@string/title_activity_home"
+            android:launchMode="singleTop">
         </activity>
         <activity
             android:name=".activity.SettingActivity"
@@ -33,7 +34,20 @@
         </activity>
         <activity
             android:name=".activity.Setup1Activity"
-            android:label="@string/title_activity_setup1" >
+            android:label="@string/title_activity_setup1"
+            android:launchMode="singleTop">
+        </activity>
+        <activity
+            android:name=".activity.Setup2Activity"
+            android:label="@string/title_activity_setup2" >
+        </activity>
+        <activity
+            android:name=".activity.Setup3Activity"
+            android:label="@string/title_activity_setup3" >
+        </activity>
+        <activity
+            android:name=".activity.Setup4Activity"
+            android:label="@string/title_activity_setup4" >
         </activity>
     </application>
 

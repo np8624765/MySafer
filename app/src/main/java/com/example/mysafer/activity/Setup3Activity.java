@@ -7,20 +7,29 @@ import android.view.View;
 
 import com.example.mysafer.R;
 
-public class Setup1Activity extends Activity {
+public class Setup3Activity extends Activity {
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_setup1);
+        setContentView(R.layout.activity_setup3);
+
     }
 
     public void next(View v) {
         //下一页
-        startActivity(new Intent(Setup1Activity.this, Setup2Activity.class));
+        startActivity(new Intent(Setup3Activity.this, Setup4Activity.class));
         finish();
-        //跳转Activity的动画效果
         overridePendingTransition(R.anim.next_in, R.anim.next_out);
+
+    }
+
+    public void prev(View v) {
+        //上一页
+        startActivity(new Intent(Setup3Activity.this, Setup2Activity.class));
+        finish();
+        overridePendingTransition(R.anim.prev_in, R.anim.prev_out);
     }
 
 
