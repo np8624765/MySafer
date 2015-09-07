@@ -23,21 +23,20 @@ public class LostFindActivity extends Activity {
 
         if(sp.getBoolean("configed", false)) {
             setContentView(R.layout.activity_lost_find);
+            //将保存的信息显示在界面上
+            String phone = sp.getString("safe_phone", "未设置");
+            ((TextView)findViewById(R.id.tv_safe_phone)).setText(phone);
+
+            ImageView iv = (ImageView)findViewById(R.id.iv_lock);
+            if(sp.getBoolean("sjfd", false)) {
+                iv.setImageResource(R.drawable.lock);
+            }else {
+                iv.setImageResource(R.drawable.unlock);
+            }
         }else {
             //进入设置向导
             startActivity(new Intent(LostFindActivity.this, Setup1Activity.class));
             finish();
-        }
-
-        //将保存的信息显示在界面上
-        String phone = sp.getString("safe_phone", "未设置");
-        ((TextView)findViewById(R.id.tv_safe_phone)).setText(phone);
-
-        ImageView iv = (ImageView)findViewById(R.id.iv_lock);
-        if(sp.getBoolean("sjfd", false)) {
-            iv.setImageResource(R.drawable.lock);
-        }else {
-            iv.setImageResource(R.drawable.unlock);
         }
     }
 

@@ -113,28 +113,28 @@
             android:layout_height="wrap_content">
 
             <TextView
-                android:text="  手机卡变更报警功能"
+                android:text="  GPS定位追踪(#*location*#)"
                 style="@style/ContentStyle"
                 android:drawableLeft="@android:drawable/star_big_on"
                 android:gravity="center"
                 />
 
             <TextView
-                android:text="  GPS卫星定位追踪"
+                android:text="  播放报警音乐(#*alarm*#)"
                 style="@style/ContentStyle"
                 android:drawableLeft="@android:drawable/star_big_on"
                 android:gravity="center"
                 />
 
             <TextView
-                android:text="  远程控制销毁数据"
+                android:text="  远程控制销毁数据(#*wipedata*#)"
                 style="@style/ContentStyle"
                 android:drawableLeft="@android:drawable/star_big_on"
                 android:gravity="center"
                 />
 
             <TextView
-                android:text="  远程控制锁定手机屏幕"
+                android:text="  远程锁定屏幕(#*lockscreen*#)"
                 style="@style/ContentStyle"
                 android:drawableLeft="@android:drawable/star_big_on"
                 android:gravity="center"
