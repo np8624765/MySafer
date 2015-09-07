@@ -1,20 +1,33 @@
 package com.example.mysafer.activity;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.View;
 
 import com.example.mysafer.R;
+import com.example.mysafer.views.SettingItemView;
 
 public class Setup4Activity extends BaseSetupActivity {
 
-    private SharedPreferences sp;
+    private SettingItemView sivFd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_setup4);
-        sp = getSharedPreferences("config", MODE_PRIVATE);
+
+        sivFd = (SettingItemView)findViewById(R.id.siv_sjfd);
+        sivFd.setChecked(sp.getBoolean("sjfd", false));
+        sivFd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //切换勾选状态
+                sivFd.setChecked(!sivFd.isChecked());
+                //更新sp
+                sp.edit().putBoolean("sjfd", sivFd.isChecked()).commit();
+            }
+        });
+
     }
 
     @Override

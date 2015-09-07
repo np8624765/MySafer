@@ -24,18 +24,20 @@
          />
 
     <EditText
-        android:id="@+id/ed_safe_phone"
+        android:id="@+id/et_safe_phone"
         android:hint="请输入或选择安全号码"
         android:layout_margin="5dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:inputType="phone"/>
 
     <Button
         android:text="选择联系人"
         android:layout_margin="5dp"
         android:background="@drawable/btn_blue"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:onClick="choice"/>
 
     
     <LinearLayout
