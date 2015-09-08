@@ -5,6 +5,7 @@ import android.os.Bundle;
 
 import com.example.mysafer.R;
 
+//手机防盗设置向导1界面
 public class Setup1Activity extends BaseSetupActivity {
 
     @Override

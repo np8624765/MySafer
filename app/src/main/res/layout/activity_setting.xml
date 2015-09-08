@@ -22,5 +22,14 @@
         mysafer:desc_off = "已关闭"
         />
 
+    <com.example.mysafer.views.SettingItemView
+        android:id="@+id/siv_address"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        mysafer:setting_title = "显示去电来电归属地"
+        mysafer:desc_on = "已开启"
+        mysafer:desc_off = "已关闭"
+        />
+
 
 </LinearLayout>

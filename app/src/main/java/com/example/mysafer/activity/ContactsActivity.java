@@ -18,6 +18,7 @@ import com.example.mysafer.bean.Contacts;
 import java.util.ArrayList;
 import java.util.List;
 
+//选择联系人界面
 public class ContactsActivity extends Activity {
 
     private ListView lv;

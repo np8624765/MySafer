@@ -9,6 +9,7 @@ import android.widget.Toast;
 import com.example.mysafer.R;
 import com.example.mysafer.views.SettingItemView;
 
+//手机防盗设置向导2界面
 public class Setup2Activity extends BaseSetupActivity {
 
     private SettingItemView sivSIM;

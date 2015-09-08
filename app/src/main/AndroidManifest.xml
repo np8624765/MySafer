@@ -11,6 +11,9 @@
     <uses-permission android:name="android.permission.RECEIVE_SMS" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.PROCESS_OUTGOING_CALLS" />
+
 
     <application
         android:allowBackup="true"
@@ -60,6 +63,14 @@
             android:name=".activity.ContactsActivity"
             android:label="@string/title_activity_contacts" >
         </activity>
+        <activity
+            android:name=".activity.AToolsActivity"
+            android:label="@string/title_activity_atools" >
+        </activity>
+        <activity
+            android:name=".activity.AddressActivity"
+            android:label="@string/title_activity_address" >
+        </activity>
 
         <receiver
             android:name=".receiver.BootCompleteReceiver"
@@ -78,24 +89,32 @@
             </intent-filter>
         </receiver>
 
+        <receiver
+            android:name=".receiver.AdminReceiver"
+            android:enabled="true"
+            android:exported="true"
+            android:permission="android.permission.BIND_DEVICE_ADMIN" >
+            <meta-data
+                android:name="android.app.device_admin"
+                android:resource="@xml/device_admin_sample" />
+
+            <intent-filter>
+                <action android:name="android.app.action.DEVICE_ADMIN_ENABLED" />
+            </intent-filter>
+        </receiver>
+
         <service
             android:name=".service.LocationService"
             android:enabled="true"
             android:exported="true" >
         </service>
 
-        <receiver
-            android:name=".receiver.AdminReceiver"
-            android:permission="android.permission.BIND_DEVICE_ADMIN"
+        <service
+            android:name=".service.AddressService"
             android:enabled="true"
             android:exported="true" >
-            <meta-data
-                android:name="android.app.device_admin"
-                android:resource="@xml/device_admin_sample" />
-            <intent-filter>
-                <action android:name="android.app.action.DEVICE_ADMIN_ENABLED" />
-            </intent-filter>
-        </receiver>
+        </service>
+
 
     </application>
 

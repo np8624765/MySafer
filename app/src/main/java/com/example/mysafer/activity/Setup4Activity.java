@@ -7,6 +7,7 @@ import android.view.View;
 import com.example.mysafer.R;
 import com.example.mysafer.views.SettingItemView;
 
+//手机防盗设置向导4界面
 public class Setup4Activity extends BaseSetupActivity {
 
     private SettingItemView sivFd;

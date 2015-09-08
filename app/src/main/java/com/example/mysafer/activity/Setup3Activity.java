@@ -10,6 +10,7 @@ import android.widget.Toast;
 
 import com.example.mysafer.R;
 
+//手机防盗设置向导3界面
 public class Setup3Activity extends BaseSetupActivity {
 
 

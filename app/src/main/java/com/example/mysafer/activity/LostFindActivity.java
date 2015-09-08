@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.example.mysafer.R;
 
+//手机防盗界面
 public class LostFindActivity extends Activity {
 
     private SharedPreferences sp;

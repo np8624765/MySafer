@@ -19,6 +19,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.mysafer.R;
+import com.example.mysafer.service.AddressService;
 import com.example.mysafer.untils.SteamUtils;
 import com.lidroid.xutils.HttpUtils;
 import com.lidroid.xutils.exception.HttpException;
@@ -29,13 +30,14 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.charset.MalformedInputException;
 
-
+//闪屏界面
 public class SplashActivity extends Activity {
     private static final int CODE_UPDATE_DIALOG = 0;
     private static final int CODE_URL_ERR = 1;
@@ -84,9 +86,14 @@ public class SplashActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
-        RelativeLayout rl = (RelativeLayout)findViewById(R.id.rl_root);
-
         sp = getSharedPreferences("config", MODE_PRIVATE);
+
+        //拷贝归属地查询数据库
+        copyDB("address.db");
+        //判断是否开启归属地服务
+        openAddressService();
+
+        RelativeLayout rl = (RelativeLayout)findViewById(R.id.rl_root);
 
         if(sp.getBoolean("auto_update", true)) {
             //检查升级
@@ -267,5 +274,35 @@ public class SplashActivity extends Activity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         enterHome();
+    }
+
+    //拷贝数据库至files文件夹下,用于归属地查询
+    private void copyDB(String dbName) {
+        File desFile = new File(getFilesDir(), dbName);
+        //数据库已经存在，就不拷贝了
+        if (desFile.exists()) {
+            return;
+        }
+        try {
+            InputStream in = getAssets().open(dbName);
+            FileOutputStream out = new FileOutputStream(desFile);
+            int len = 0;
+            byte[] buf = new byte[1024];
+            while((len=in.read(buf))!=-1) {
+                out.write(buf, 0, len);
+            }
+            out.close();
+            in.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    //根据用户设置，开启去电来电归属地服务
+    private void openAddressService() {
+        if(sp.getBoolean("show_address", false)) {
+            //开启归属地服务
+            startService(new Intent(SplashActivity.this, AddressService.class));
+        }
     }
 }

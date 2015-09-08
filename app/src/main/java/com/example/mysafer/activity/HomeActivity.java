@@ -20,6 +20,7 @@ import android.widget.Toast;
 import com.example.mysafer.R;
 import com.example.mysafer.untils.Md5Utils;
 
+//Home界面
 public class HomeActivity extends Activity {
 
     private GridView gvHome;
@@ -82,6 +83,10 @@ public class HomeActivity extends Activity {
                     //手机防盗
                     case 0:
                         showPwdDailog();
+                        break;
+                    //高级工具
+                    case 7:
+                        startActivity(new Intent(HomeActivity.this, AToolsActivity.class));
                         break;
                     //设置中心
                     case 8:
