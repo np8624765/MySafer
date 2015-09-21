@@ -31,5 +31,38 @@
         mysafer:desc_off = "已关闭"
         />
 
+    <com.example.mysafer.views.SettingClickView
+        android:id="@+id/scv_address_style"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        mysafer:click_title = "归属地显示框风格"
+        mysafer:click_desc = "颜色"
+        />
+
+    <com.example.mysafer.views.SettingClickView
+        android:id="@+id/scv_address_location"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        mysafer:click_title = "归属地显示框出现位置"
+        mysafer:click_desc = "点击进入归属地显示框位置"
+        />
+
+    <com.example.mysafer.views.SettingItemView
+        android:id="@+id/siv_callsafe"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        mysafer:setting_title = "拦截黑名单电话短信"
+        mysafer:desc_on = "已开启"
+        mysafer:desc_off = "已关闭"
+        />
+
+    <com.example.mysafer.views.SettingItemView
+        android:id="@+id/siv_applock"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        mysafer:setting_title = "手机应用程序锁功能"
+        mysafer:desc_on = "已开启"
+        mysafer:desc_off = "已关闭"
+        />
 
 </LinearLayout>

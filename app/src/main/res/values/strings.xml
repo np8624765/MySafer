@@ -14,4 +14,14 @@
 
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_address">AddressActivity</string>
+    <string name="title_activity_drag_view">DragViewActivity</string>
+    <string name="title_activity_call_safe">CallSafeActivity</string>
+    <string name="title_activity_app_manager">AppManagerActivity</string>
+    <string name="title_activity_process_manager">ProcessManagerActivity</string>
+    <string name="title_activity_antivirus">AntivirusActivity</string>
+    <string name="title_activity_app_lock">AppLockActivity</string>
+
+<!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_input_pwd">InputPwdActivity</string>
 </resources>

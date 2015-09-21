@@ -33,8 +33,8 @@
 
     <Button
         android:text="选择联系人"
-        android:layout_margin="5dp"
         android:background="@drawable/btn_blue"
+        android:layout_margin="5dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:onClick="choice"/>

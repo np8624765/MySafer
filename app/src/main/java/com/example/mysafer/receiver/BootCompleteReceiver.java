@@ -24,7 +24,7 @@ public class BootCompleteReceiver extends BroadcastReceiver {
                 String simNumber = sp.getString("simNumber", null);
                 TelephonyManager tm = (TelephonyManager)context.getSystemService(
                         context.TELEPHONY_SERVICE);
-                String simSerialNumber = tm.getSimSerialNumber()+"1";
+                String simSerialNumber = tm.getSimSerialNumber();
                 //比较sp中保存的SIM号，和当前手机SIM号
                 if(simNumber.equals(simSerialNumber)) {
                     System.out.println("手机SIM未变化");

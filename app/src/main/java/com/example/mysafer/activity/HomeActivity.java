@@ -84,6 +84,22 @@ public class HomeActivity extends Activity {
                     case 0:
                         showPwdDailog();
                         break;
+                    //通讯卫士
+                    case 1:
+                        startActivity(new Intent(HomeActivity.this, CallSafeActivity.class));
+                        break;
+                    //软件管理
+                    case 2:
+                        startActivity(new Intent(HomeActivity.this, AppManagerActivity.class));
+                        break;
+                    //进程管理
+                    case 3:
+                        startActivity(new Intent(HomeActivity.this, ProcessManagerActivity.class));
+                        break;
+                    //手机杀毒
+                    case 5:
+                        startActivity(new Intent(HomeActivity.this, AntivirusActivity.class));
+                        break;
                     //高级工具
                     case 7:
                         startActivity(new Intent(HomeActivity.this, AToolsActivity.class));

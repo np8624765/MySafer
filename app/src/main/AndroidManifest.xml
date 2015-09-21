@@ -13,7 +13,16 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.PROCESS_OUTGOING_CALLS" />
-
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.READ_CALL_LOG" />
+    <uses-permission android:name="android.permission.WRITE_CALL_LOG" />
+    <uses-permission android:name="android.permission.READ_SMS" />
+    <uses-permission android:name="android.permission.WRITE_SMS" />
+    <uses-permission android:name="com.android.launcher.permission.INSTALL_SHORTCUT" />
+    <uses-permission android:name="com.android.launcher.permission.READ_SETTINGS" />
+    <uses-permission android:name="android.permission.KILL_BACKGROUND_PROCESSES" />
+    <uses-permission android:name="android.permission.GET_TASKS" />
 
     <application
         android:allowBackup="true"
@@ -71,6 +80,31 @@
             android:name=".activity.AddressActivity"
             android:label="@string/title_activity_address" >
         </activity>
+        <activity
+            android:name=".activity.DragViewActivity"
+            android:label="@string/title_activity_drag_view"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen" >
+        </activity>
+        <activity
+            android:name=".activity.CallSafeActivity"
+            android:label="@string/title_activity_call_safe" >
+        </activity>
+        <activity
+            android:name=".activity.AppManagerActivity"
+            android:label="@string/title_activity_app_manager" >
+        </activity>
+        <activity
+            android:name=".activity.ProcessManagerActivity"
+            android:label="@string/title_activity_process_manager" >
+        </activity>
+        <activity
+            android:name=".activity.AntivirusActivity"
+            android:label="@string/title_activity_antivirus" >
+        </activity>
+        <activity
+            android:name=".activity.AppLockActivity"
+            android:label="@string/title_activity_app_lock" >
+        </activity>
 
         <receiver
             android:name=".receiver.BootCompleteReceiver"
@@ -88,7 +122,6 @@
                 <action android:name="android.provider.Telephony.SMS_RECEIVED" />
             </intent-filter>
         </receiver>
-
         <receiver
             android:name=".receiver.AdminReceiver"
             android:enabled="true"
@@ -108,14 +141,27 @@
             android:enabled="true"
             android:exported="true" >
         </service>
-
         <service
             android:name=".service.AddressService"
             android:enabled="true"
             android:exported="true" >
         </service>
+        <service
+            android:name=".service.CallSafeService"
+            android:enabled="true"
+            android:exported="true" >
+        </service>
+        <service
+            android:name=".service.WatchDogService"
+            android:enabled="true"
+            android:exported="true" >
+        </service>
 
-
+        <activity
+            android:name=".activity.InputPwdActivity"
+            android:label="@string/title_activity_input_pwd"
+            android:launchMode="singleInstance">
+        </activity>
     </application>
 
 </manifest>

@@ -2,11 +2,14 @@ package com.example.mysafer.activity;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.database.Cursor;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -19,12 +22,16 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.mysafer.R;
+import com.example.mysafer.db.AntivirusDao;
 import com.example.mysafer.service.AddressService;
+import com.example.mysafer.service.CallSafeService;
+import com.example.mysafer.service.WatchDogService;
 import com.example.mysafer.untils.SteamUtils;
 import com.lidroid.xutils.HttpUtils;
 import com.lidroid.xutils.exception.HttpException;
 import com.lidroid.xutils.http.ResponseInfo;
 import com.lidroid.xutils.http.callback.RequestCallBack;
+import com.lidroid.xutils.http.client.HttpRequest;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -88,10 +95,21 @@ public class SplashActivity extends Activity {
 
         sp = getSharedPreferences("config", MODE_PRIVATE);
 
-        //拷贝归属地查询数据库
+        //拷贝归属地查询数据库和病毒库
         copyDB("address.db");
-        //判断是否开启归属地服务
+        copyDB("antivirus.db");
+
+        //更新病毒库
+        updateVirus();
+
+        //创建快捷方式
+        if(!hasShortcut(this)) {
+            createShortcut();
+        }
+        //判断是否开启归属地服务,黑名单，手机锁
         openAddressService();
+        openCallSafeService();
+        openAppLockService();
 
         RelativeLayout rl = (RelativeLayout)findViewById(R.id.rl_root);
 
@@ -276,7 +294,7 @@ public class SplashActivity extends Activity {
         enterHome();
     }
 
-    //拷贝数据库至files文件夹下,用于归属地查询
+    //拷贝数据库至files文件夹下,用于归属地查询和病毒库
     private void copyDB(String dbName) {
         File desFile = new File(getFilesDir(), dbName);
         //数据库已经存在，就不拷贝了
@@ -304,5 +322,89 @@ public class SplashActivity extends Activity {
             //开启归属地服务
             startService(new Intent(SplashActivity.this, AddressService.class));
         }
+    }
+
+    //根据用户设置，开启黑名单服务
+    private void openCallSafeService() {
+        if(sp.getBoolean("call_safe", false)) {
+            //开启归属地服务
+            startService(new Intent(SplashActivity.this, CallSafeService.class));
+        }
+    }
+
+    //根据用户设置，开启手机程序锁
+    private void openAppLockService() {
+        if(sp.getBoolean("app_lock", false)) {
+            //开启归属地服务
+            startService(new Intent(SplashActivity.this, WatchDogService.class));
+        }
+    }
+
+    //创建快捷方式
+    private void createShortcut() {
+        Intent intent = new Intent();
+        intent.setAction("com.android.launcher.action.INSTALL_SHORTCUT");
+        //这个方法无效...
+        intent.putExtra("duplicate", false);
+        intent.putExtra(
+                Intent.EXTRA_SHORTCUT_ICON, BitmapFactory.decodeResource(getResources(),
+                        R.mipmap.logo));
+        intent.putExtra(Intent.EXTRA_SHORTCUT_NAME, "我的卫士");
+        intent.putExtra(Intent.EXTRA_SHORTCUT_INTENT, new Intent(this, SplashActivity.class));
+        sendBroadcast(intent);
+    }
+
+    //判断快捷方式是否存在
+    public boolean hasShortcut(Context cx) {
+        boolean result = false;
+        // 获取当前应用名称
+        String title = null;
+        try {
+            final PackageManager pm = cx.getPackageManager();
+            title = pm.getApplicationLabel(
+                    pm.getApplicationInfo(cx.getPackageName(),
+                            PackageManager.GET_META_DATA)).toString();
+        } catch (Exception e) {
+        }
+
+        final String uriStr;
+        if (android.os.Build.VERSION.SDK_INT < 8) {
+            uriStr = "content://com.android.launcher.settings/favorites?notify=true";
+        } else {
+            uriStr = "content://com.android.launcher2.settings/favorites?notify=true";
+        }
+        final Uri CONTENT_URI = Uri.parse(uriStr);
+        final Cursor c = cx.getContentResolver().query(CONTENT_URI, null,
+                "title=?", new String[] { title }, null);
+        if (c != null && c.getCount() > 0) {
+            result = true;
+        }
+        return result;
+    }
+
+    //更新病毒数据库
+    private void updateVirus() {
+
+        //使用XUtils访问数据
+        HttpUtils httpUtils = new HttpUtils();
+        httpUtils.send(HttpRequest.HttpMethod.GET, "http://192.168.1.134/mysafer/virus.json",
+                new RequestCallBack<String>() {
+                    @Override
+                    public void onSuccess(ResponseInfo<String> responseInfo) {
+                        //System.out.println(responseInfo.result);
+                        try {
+                            JSONObject json = new JSONObject(responseInfo.result);
+                            String md5 = json.getString("md5");
+                            String desc = json.getString("desc");
+                            AntivirusDao.addVirus(md5, desc);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                    @Override
+                    public void onFailure(HttpException e, String s) {
+                        Toast.makeText(SplashActivity.this, "更新病毒库失败", Toast.LENGTH_SHORT).show();
+                    }
+                });
     }
 }

@@ -1,0 +1,42 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.mysafer.activity.AppLockActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_horizontal"
+        android:background="#0072ff"
+        android:padding="3dp">
+        <TextView
+            android:id="@+id/tv_unlock"
+            android:text="未加锁"
+            android:textColor="#FFFFFF"
+            android:gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/tab_left_pressed"/>
+        <TextView
+            android:id="@+id/tv_locked"
+            android:text="已加锁"
+            android:textColor="#FFFFFF"
+            android:gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/tab_right_default"/>
+
+    </LinearLayout>
+
+   <FrameLayout
+       android:id="@+id/fl_content"
+       android:layout_width="match_parent"
+       android:layout_height="match_parent">
+
+   </FrameLayout>
+    
+</LinearLayout>

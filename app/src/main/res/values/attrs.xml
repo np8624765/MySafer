@@ -6,4 +6,9 @@
         <attr name="desc_off" format="string"></attr>
     </declare-styleable>
 
+    <declare-styleable name="SettingClickView">
+        <attr name="click_title" format="string"></attr>
+        <attr name="click_desc" format="string"></attr>
+    </declare-styleable>
+
 </resources>

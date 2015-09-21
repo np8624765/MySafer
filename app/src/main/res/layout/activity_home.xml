@@ -11,31 +11,32 @@
         android:text="功能列表"
         style="@style/TitleStyle"
         />
+    <!--
+        <com.example.mysafer.views.FocusTextView
+            android:text="欢迎您使用我的卫士，我的卫士为您的手机保驾护航..."
+            android:textColor="@color/blanck"
+            android:singleLine="true"
+            android:ellipsize="marquee"
+            android:textSize="18sp"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:layout_marginTop="10dp"
+            />
+    -->
+        <GridView
+            android:id="@+id/gv_home"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:numColumns="3"
+            android:verticalSpacing="40dp"
+            android:layout_marginTop="20dp"
+            >
 
-    <com.example.mysafer.views.FocusTextView
-        android:text="欢迎您使用我的卫士，我的卫士为您的手机保驾护航..."
-        android:textColor="@color/blanck"
-        android:singleLine="true"
-        android:ellipsize="marquee"
-        android:textSize="18sp"
-        android:layout_width="wrap_content"
-        android:layout_height="50dp"
-        android:paddingLeft="5dp"
-        android:paddingRight="5dp"
-        android:layout_marginTop="10dp"
-        />
-
-    <GridView
-        android:id="@+id/gv_home"
-        android:layout_weight="1"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:numColumns="3"
-        android:verticalSpacing="40dp"
-        >
 
 
+        </GridView>
 
-    </GridView>
-
-</LinearLayout>
+    </LinearLayout>
